@@ -1,0 +1,59 @@
+<div class="container">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" class="form-control" name="firstName" formControlName="firstName" />
+    <div class="text-danger"
+      *ngIf="(userFormControl.firstName.touched || submitted) && userFormControl.firstName.errors?.required">
+      First Name is required
+    </div>
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" class="form-control" name="lastName" formControlName="lastName" />
+    <div class="text-danger"
+      *ngIf="(userFormControl.lastName.touched || submitted) && userFormControl.lastName.errors?.required">
+      First Name is required
+    </div>
+    <label for="userName">Username</label>
+    <input type="text" id="userName" class="form-control" name="userName" formControlName="userName" />
+    <div class="text-danger"
+      *ngIf="(userFormControl.userName.touched || submitted) && userFormControl.userName.errors?.required">
+      UserName is required
+    </div>
+    <div class="text-danger"
+      *ngIf="(userFormControl.userName.touched && userFormControl.userName.errors?.userNameNotAvailable)">
+      UserName is not available
+    </div>
+    <label for="email">Enter your email:</label>
+    <input type="email" id="email" name="email" class="form-control" formControlName="email">
+    <div class="text-danger"
+      *ngIf="(userFormControl.email.touched || submitted) && userFormControl.email.errors?.required">
+      Email is required
+    </div>
+    <div class="text-danger" *ngIf="(userFormControl.email.touched && userFormControl.email.errors?.email)">
+      Enter a valid email address
+    </div>
+    <label for=" password">Password</label>
+    <input type="password" id="password" class="form-control" name="password" formControlName="password" />
+    <div class="text-danger"
+      *ngIf="(userFormControl.password.touched || submitted) && userFormControl.password.errors?.required">
+      Password is required
+    </div>
+    <div class="text-danger"
+      *ngIf="(userFormControl.password.touched && userFormControl.password.errors?.invalidPassword)">
+      Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+      letter and 1 number
+    </div>
+    <label for="confirmedPassword">Confirmed Password</label>
+    <input type="password" id="confirmedPassword" class="form-control" name="confirmedPassword"
+      formControlName="confirmedPassword" />
+    <div class="text-danger"
+      *ngIf="(userFormControl.confirmedPassword.touched || submitted) && userFormControl.confirmedPassword.errors?.required">
+      Password is required
+    </div>
+    <div class="text-danger"
+      *ngIf="(userFormControl.confirmedPassword.touched && userFormControl.confirmedPassword.errors?.passwordMismatch)">
+      Passwords does not match
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Submit</button>
+  </form>
+</div>
